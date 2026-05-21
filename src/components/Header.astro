@@ -1,0 +1,29 @@
+---
+import Nav from './Nav.astro';
+import LanguageSelector from './LanguageSelector.astro';
+import ThemeToggle from './islands/ThemeToggle';
+import type { Locale } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+  alternateUrl: string;
+}
+
+const { locale, alternateUrl } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<header>
+  <a href={`/${locale}/`} class="site-logo">Fernando Berenguer</a>
+  <Nav locale={locale} />
+  <div class="header-controls">
+    <LanguageSelector locale={locale} alternateUrl={alternateUrl} />
+    <ThemeToggle
+      client:idle
+      initialTheme="dark"
+      labelToLight={t('toggle.toLight')}
+      labelToDark={t('toggle.toDark')}
+    />
+  </div>
+</header>
