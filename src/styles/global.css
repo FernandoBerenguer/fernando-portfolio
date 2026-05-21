@@ -55,3 +55,24 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+.placeholder-block {
+  border: 1px dashed var(--color-border);
+  background: color-mix(in srgb, var(--color-surface) 90%, var(--color-accent) 10%);
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  font-style: italic;
+  opacity: 0.75;
+}
+
+.placeholder-block::before {
+  content: attr(data-label);
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-bold);
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-sm);
+}
