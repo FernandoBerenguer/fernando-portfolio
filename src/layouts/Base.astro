@@ -1,0 +1,74 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import type { Locale } from '../i18n/ui';
+import '../styles/fonts.css';
+import '../styles/tokens.css';
+import '../styles/global.css';
+import '../styles/animations.css';
+
+interface Props {
+  locale: Locale;
+  alternateUrl: string;
+  title?: string;
+}
+
+const {
+  locale,
+  alternateUrl,
+  title = 'Fernando Berenguer — Backend Developer',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      rel="preload"
+      href="/fonts/InterVariable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="alternate" hreflang={locale} href={Astro.url.href} />
+    <link
+      rel="alternate"
+      hreflang={locale === 'es' ? 'en' : 'es'}
+      href={new URL(alternateUrl, Astro.site).href}
+    />
+    <!-- Resolves theme before first paint; must be synchronous, no defer/module -->
+    <script is:inline>
+      (function () {
+        var s = localStorage.getItem('theme');
+        var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = s || (dark ? 'dark' : 'light');
+        if (theme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+        document.documentElement.classList.add('theme-ready');
+      })();
+    </script>
+    <ClientRouter />
+  </head>
+  <body>
+    <!-- Header added in T8 -->
+    <main>
+      <slot />
+    </main>
+    <!-- Footer added in T8 -->
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) =>
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add('is-visible');
+              observer.unobserve(e.target);
+            }
+          }),
+        { threshold: 0.15 },
+      );
+      document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>
