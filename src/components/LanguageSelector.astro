@@ -1,0 +1,23 @@
+---
+import type { Locale } from '../i18n/ui';
+import { languages } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+  alternateUrl: string;
+}
+
+const { locale, alternateUrl } = Astro.props;
+const t = useTranslations(locale);
+const alternateLocale: Locale = locale === 'es' ? 'en' : 'es';
+---
+
+<nav class="language-selector" aria-label="Language / Idioma">
+  <a href={Astro.url.pathname} aria-current="true" hreflang={locale}>
+    {languages[locale]}
+  </a>
+  <a href={alternateUrl} hreflang={alternateLocale} aria-label={t('lang.switch')}>
+    {languages[alternateLocale]}
+  </a>
+</nav>
