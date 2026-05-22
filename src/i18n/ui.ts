@@ -30,6 +30,15 @@ export const ui = {
     'placeholder.stack.body':         '.NET · C# · SQL Server · Azure · Docker · [Contenido real va aquí]',
     'placeholder.contact.heading':    'Contacto',
     'placeholder.contact.body':       'email@example.com · LinkedIn · GitHub · [Contenido real va aquí]',
+
+    'stack.cat.lang':       'Lenguajes',
+    'stack.cat.frameworks': 'Frameworks y plataformas',
+    'stack.cat.cloud':      'Cloud & DevOps',
+    'stack.cat.db':         'Bases de datos',
+
+    'contact.email':    'Email',
+    'contact.linkedin': 'LinkedIn',
+    'contact.github':   'GitHub',
   },
   en: {
     'nav.about':       'About',
@@ -58,5 +67,14 @@ export const ui = {
     'placeholder.stack.body':         '.NET · C# · SQL Server · Azure · Docker · [Real content goes here]',
     'placeholder.contact.heading':    'Contact',
     'placeholder.contact.body':       'email@example.com · LinkedIn · GitHub · [Real content goes here]',
+
+    'stack.cat.lang':       'Languages',
+    'stack.cat.frameworks': 'Frameworks & platforms',
+    'stack.cat.cloud':      'Cloud & DevOps',
+    'stack.cat.db':         'Databases',
+
+    'contact.email':    'Email',
+    'contact.linkedin': 'LinkedIn',
+    'contact.github':   'GitHub',
   },
 } as const;

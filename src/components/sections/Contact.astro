@@ -1,6 +1,9 @@
 ---
 import { useTranslations } from '../../i18n/utils';
 import type { Locale } from '../../i18n/ui';
+import IconEmail from '../icons/IconEmail.astro';
+import IconLinkedIn from '../icons/IconLinkedIn.astro';
+import IconGitHub from '../icons/IconGitHub.astro';
 
 interface Props {
   locale: Locale;
@@ -10,9 +13,65 @@ const { locale } = Astro.props;
 const t = useTranslations(locale);
 ---
 
-<section id="contact" class="fade-in">
-  <h2>{t('placeholder.contact.heading')}</h2>
-  <div class="placeholder-block" data-label={t('placeholder.label')}>
-    {t('placeholder.contact.body')}
+<section id="contact" class="section fade-in">
+  <div class="container">
+    <h2 class="section-title">{t('placeholder.contact.heading')}</h2>
+    <ul class="contact-list" role="list">
+      <li>
+        <a href="mailto:email@example.com" class="contact-link">
+          <IconEmail size={20} />
+          <span>{t('contact.email')}</span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://linkedin.com/in/placeholder"
+          class="contact-link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <IconLinkedIn size={20} />
+          <span>{t('contact.linkedin')}</span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/placeholder"
+          class="contact-link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <IconGitHub size={20} />
+          <span>{t('contact.github')}</span>
+        </a>
+      </li>
+    </ul>
   </div>
 </section>
+
+<style>
+  .contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 150ms ease;
+  }
+
+  .contact-link:hover {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+</style>

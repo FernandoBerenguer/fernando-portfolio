@@ -10,9 +10,20 @@ const { locale } = Astro.props;
 const t = useTranslations(locale);
 ---
 
-<section id="about" class="fade-in">
-  <h2>{t('placeholder.about.heading')}</h2>
-  <div class="placeholder-block" data-label={t('placeholder.label')}>
-    {t('placeholder.about.body')}
+<section id="about" class="section fade-in">
+  <div class="container">
+    <h2 class="section-title">{t('placeholder.about.heading')}</h2>
+    <div class="about-body">
+      <p>{t('placeholder.about.body')}</p>
+    </div>
   </div>
 </section>
+
+<style>
+  .about-body {
+    font-size: var(--text-lg);
+    line-height: var(--lh-body);
+    color: var(--color-text);
+    max-width: 65ch;
+  }
+</style>

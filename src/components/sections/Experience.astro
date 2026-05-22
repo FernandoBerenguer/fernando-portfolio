@@ -8,11 +8,130 @@ interface Props {
 
 const { locale } = Astro.props;
 const t = useTranslations(locale);
+
+const entries = [
+  {
+    company: '[Empresa A]',
+    role: '[Senior Backend Developer]',
+    period: '2022 – Presente',
+    stack: ['.NET 8', 'C#', 'Azure', 'SQL Server', 'Docker'],
+    desc: t('placeholder.experience.body'),
+  },
+  {
+    company: '[Empresa B]',
+    role: '[Backend Developer]',
+    period: '2019 – 2022',
+    stack: ['C#', 'ASP.NET Core', 'PostgreSQL', 'RabbitMQ'],
+    desc: t('placeholder.experience.body'),
+  },
+  {
+    company: '[Empresa C]',
+    role: '[Junior Developer]',
+    period: '2017 – 2019',
+    stack: ['C#', '.NET Framework', 'SQL Server', 'WCF'],
+    desc: t('placeholder.experience.body'),
+  },
+];
 ---
 
-<section id="experience" class="fade-in">
-  <h2>{t('placeholder.experience.heading')}</h2>
-  <div class="placeholder-block" data-label={t('placeholder.label')}>
-    {t('placeholder.experience.body')}
+<section id="experience" class="section fade-in">
+  <div class="container">
+    <h2 class="section-title">{t('placeholder.experience.heading')}</h2>
+    <div class="timeline">
+      {entries.map((entry) => (
+        <div class="timeline-item">
+          <div class="timeline-marker" aria-hidden="true"></div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <span class="timeline-company">{entry.company}</span>
+              <span class="timeline-period">{entry.period}</span>
+            </div>
+            <h3 class="timeline-role">{entry.role}</h3>
+            <p class="timeline-desc">{entry.desc}</p>
+            <ul class="chip-list" role="list">
+              {entry.stack.map((tech) => (
+                <li class="chip">{tech}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
   </div>
 </section>
+
+<style>
+  .timeline {
+    position: relative;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 12px;
+    bottom: 0;
+    width: 2px;
+    background: var(--color-border);
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-left: 30px;
+    padding-bottom: var(--space-xl);
+  }
+
+  .timeline-item:last-child {
+    padding-bottom: 0;
+  }
+
+  .timeline-marker {
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid var(--color-accent);
+    background: var(--color-bg);
+  }
+
+  .timeline-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .timeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+
+  .timeline-company {
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+  }
+
+  .timeline-period {
+    font-size: var(--text-sm);
+    font-family: var(--font-mono);
+    color: var(--color-text-muted);
+  }
+
+  .timeline-role {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-accent);
+    margin: 0;
+  }
+
+  .timeline-desc {
+    font-size: var(--text-base);
+    line-height: var(--lh-body);
+    color: var(--color-text-muted);
+  }
+</style>
