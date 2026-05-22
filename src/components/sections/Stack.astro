@@ -12,19 +12,23 @@ const t = useTranslations(locale);
 const categories = [
   {
     label: t('stack.cat.lang'),
-    items: ['C#', 'TypeScript', 'SQL', 'Python'],
-  },
-  {
-    label: t('stack.cat.frameworks'),
-    items: ['.NET 8', 'ASP.NET Core', 'Entity Framework', 'Astro'],
-  },
-  {
-    label: t('stack.cat.cloud'),
-    items: ['Azure', 'Docker', 'GitHub Actions', 'Terraform'],
+    items: ['C#', '.NET (Core 3.1→8)', 'ASP.NET Core', 'Razor', 'JavaScript'],
   },
   {
     label: t('stack.cat.db'),
-    items: ['SQL Server', 'PostgreSQL', 'Redis', 'Cosmos DB'],
+    items: ['SQL Server', 'MongoDB', 'Cosmos DB', 'DynamoDB', 'Redis'],
+  },
+  {
+    label: t('stack.cat.cloud'),
+    items: ['Azure Functions', 'Azure Service Bus', 'AWS Lambda'],
+  },
+  {
+    label: t('stack.cat.arch'),
+    items: ['Clean Architecture', 'CQRS', 'DDD', 'TDD', 'Microservices', 'Scrum'],
+  },
+  {
+    label: t('stack.cat.tools'),
+    items: ['Git', 'Hangfire'],
   },
 ];
 ---

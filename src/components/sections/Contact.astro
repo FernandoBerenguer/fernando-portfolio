@@ -3,7 +3,6 @@ import { useTranslations } from '../../i18n/utils';
 import type { Locale } from '../../i18n/ui';
 import IconEmail from '../icons/IconEmail.astro';
 import IconLinkedIn from '../icons/IconLinkedIn.astro';
-import IconGitHub from '../icons/IconGitHub.astro';
 
 interface Props {
   locale: Locale;
@@ -18,31 +17,20 @@ const t = useTranslations(locale);
     <h2 class="section-title">{t('placeholder.contact.heading')}</h2>
     <ul class="contact-list" role="list">
       <li>
-        <a href="mailto:email@example.com" class="contact-link">
+        <a href="mailto:fernando.berenguer.borrego@gmail.com" class="contact-link">
           <IconEmail size={20} />
           <span>{t('contact.email')}</span>
         </a>
       </li>
       <li>
         <a
-          href="https://linkedin.com/in/placeholder"
+          href="https://www.linkedin.com/in/fernando-berenguer-269b7696/"
           class="contact-link"
           target="_blank"
           rel="noopener noreferrer"
         >
           <IconLinkedIn size={20} />
           <span>{t('contact.linkedin')}</span>
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/placeholder"
-          class="contact-link"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <IconGitHub size={20} />
-          <span>{t('contact.github')}</span>
         </a>
       </li>
     </ul>
