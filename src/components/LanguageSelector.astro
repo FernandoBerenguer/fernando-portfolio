@@ -17,7 +17,40 @@ const alternateLocale: Locale = locale === 'es' ? 'en' : 'es';
   <a href={Astro.url.pathname} aria-current="true" hreflang={locale}>
     {languages[locale]}
   </a>
+  <span class="lang-sep" aria-hidden="true">·</span>
   <a href={alternateUrl} hreflang={alternateLocale} aria-label={t('lang.switch')}>
     {languages[alternateLocale]}
   </a>
 </nav>
+
+<style>
+  nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  a {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-normal);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 150ms ease;
+  }
+
+  a[aria-current="true"] {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+  }
+
+  a:hover {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .lang-sep {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    user-select: none;
+  }
+</style>

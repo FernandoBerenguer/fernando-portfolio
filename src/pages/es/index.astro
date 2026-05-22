@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Hero from '../../components/sections/Hero.astro';
 import About from '../../components/sections/About.astro';
 import Experience from '../../components/sections/Experience.astro';
 import Stack from '../../components/sections/Stack.astro';
@@ -12,6 +13,7 @@ const alternateUrl = getAlternateUrl(Astro.url, locale);
 ---
 
 <Base locale={locale} alternateUrl={alternateUrl}>
+  <Hero locale={locale} />
   <About locale={locale} />
   <Experience locale={locale} />
   <Stack locale={locale} />

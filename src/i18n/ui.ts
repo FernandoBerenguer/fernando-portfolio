@@ -14,6 +14,13 @@ export const ui = {
 
     'lang.switch':     'Switch to English',
 
+    'hero.label':    'Hola, soy',
+    'hero.name':     'Fernando Berenguer',
+    'hero.role':     'Senior Backend Developer',
+    'hero.spec':     '· .NET · Azure · Arquitectura distribuida',
+    'hero.tagline':  'Diseño sistemas que escalan y código que se mantiene.',
+    'hero.cta':      'Contacto →',
+
     'placeholder.label':              '[PROVISIONAL]',
     'placeholder.about.heading':      'Sobre mí',
     'placeholder.about.body':         'Desarrollador Backend Senior con experiencia en .NET, C# y arquitectura de sistemas distribuidos. [Contenido real va aquí]',
@@ -34,6 +41,13 @@ export const ui = {
     'toggle.toDark':   'Switch to dark theme',
 
     'lang.switch':     'Cambiar a español',
+
+    'hero.label':    "Hi, I'm",
+    'hero.name':     'Fernando Berenguer',
+    'hero.role':     'Senior Backend Developer',
+    'hero.spec':     '· .NET · Azure · Distributed Architecture',
+    'hero.tagline':  'I design systems that scale and code that lasts.',
+    'hero.cta':      'Contact →',
 
     'placeholder.label':              '[PLACEHOLDER]',
     'placeholder.about.heading':      'About',
