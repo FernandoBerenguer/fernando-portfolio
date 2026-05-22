@@ -1,3 +1,11 @@
 ---
-return Astro.redirect('/es/');
+// _redirects handles this in production (Cloudflare HTTP 302). This is the dev fallback.
 ---
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="0;url=/es/" />
+    <link rel="canonical" href="https://fernando-berenguer.pages.dev/es/" />
+  </head>
+  <body></body>
+</html>
