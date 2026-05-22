@@ -61,17 +61,25 @@ const {
     </main>
     <Footer />
     <script>
-      const observer = new IntersectionObserver(
-        (entries) =>
-          entries.forEach((e) => {
-            if (e.isIntersecting) {
-              e.target.classList.add('is-visible');
-              observer.unobserve(e.target);
-            }
-          }),
-        { threshold: 0.15 },
-      );
-      document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+      let prevObserver: IntersectionObserver | null = null;
+
+      document.addEventListener('astro:page-load', () => {
+        prevObserver?.disconnect();
+
+        const obs = new IntersectionObserver(
+          (entries) =>
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add('is-visible');
+                obs.unobserve(e.target);
+              }
+            }),
+          { threshold: 0.15 },
+        );
+
+        document.querySelectorAll('.fade-in').forEach((el) => obs.observe(el));
+        prevObserver = obs;
+      });
     </script>
   </body>
 </html>
