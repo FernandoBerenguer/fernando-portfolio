@@ -39,6 +39,8 @@ export const ui = {
     'contact.email':    'Email',
     'contact.linkedin': 'LinkedIn',
     'contact.github':   'GitHub',
+
+    'timeline.present': 'Presente',
   },
   en: {
     'nav.about':       'About',
@@ -76,5 +78,7 @@ export const ui = {
     'contact.email':    'Email',
     'contact.linkedin': 'LinkedIn',
     'contact.github':   'GitHub',
+
+    'timeline.present': 'Present',
   },
 } as const;

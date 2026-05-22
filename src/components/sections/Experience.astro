@@ -13,7 +13,7 @@ const entries = [
   {
     company: '[Empresa A]',
     role: '[Senior Backend Developer]',
-    period: '2022 – Presente',
+    period: `2022 – ${t('timeline.present')}`,
     stack: ['.NET 8', 'C#', 'Azure', 'SQL Server', 'Docker'],
     desc: t('placeholder.experience.body'),
   },
@@ -61,20 +61,6 @@ const entries = [
 </section>
 
 <style>
-  .timeline {
-    position: relative;
-  }
-
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 6px;
-    top: 12px;
-    bottom: 0;
-    width: 2px;
-    background: var(--color-border);
-  }
-
   .timeline-item {
     position: relative;
     padding-left: 30px;
@@ -83,6 +69,17 @@ const entries = [
 
   .timeline-item:last-child {
     padding-bottom: 0;
+  }
+
+  /* Line segment from current marker center to next marker center */
+  .timeline-item:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 12px;
+    height: 100%;
+    width: 2px;
+    background: var(--color-border);
   }
 
   .timeline-marker {
