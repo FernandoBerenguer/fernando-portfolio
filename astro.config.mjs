@@ -6,7 +6,7 @@ import react from '@astrojs/react';
 // https://astro.build/config
 export default defineConfig({
   output: 'static',
-  site: 'https://example.com', // TODO: actualizar en la spec de deploy
+  site: 'https://fernando-berenguer.pages.dev',
   integrations: [react()],
   i18n: {
     defaultLocale: 'es',
