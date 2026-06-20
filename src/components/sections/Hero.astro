@@ -8,9 +8,72 @@ interface Props {
 
 const { locale } = Astro.props;
 const t = useTranslations(locale);
+
+// Deterministic node layout — LCG seed 42, runs at build time, zero browser JS
+function lcgRand(seed: number): () => number {
+  let s = seed;
+  return (): number => {
+    s = (1664525 * s + 1013904223) % 4294967296;
+    return s / 4294967296;
+  };
+}
+
+const W = 1200;
+const H = 600;
+const N = 45;
+const rand = lcgRand(42);
+
+interface NodePos { x: number; y: number }
+const nodes: NodePos[] = Array.from({ length: N }, () => ({
+  x: Math.round(rand() * W),
+  y: Math.round(rand() * H),
+}));
+
+interface Edge { a: number; b: number }
+const edges: Edge[] = [];
+const degree = new Array<number>(N).fill(0);
+const DIST = 220;
+const MAX_DEG = 3;
+
+for (let i = 0; i < N; i++) {
+  const near: { j: number; d: number }[] = [];
+  for (let j = i + 1; j < N; j++) {
+    const dx = nodes[i].x - nodes[j].x;
+    const dy = nodes[i].y - nodes[j].y;
+    const d = Math.sqrt(dx * dx + dy * dy);
+    if (d < DIST) near.push({ j, d });
+  }
+  near.sort((a, b) => a.d - b.d);
+  for (const { j } of near) {
+    if (degree[i] >= MAX_DEG || degree[j] >= MAX_DEG) continue;
+    edges.push({ a: i, b: j });
+    degree[i]++;
+    degree[j]++;
+  }
+}
 ---
 
 <section class="hero">
+  <svg
+    class="hero-bg"
+    viewBox={`0 0 ${W} ${H}`}
+    preserveAspectRatio="xMidYMid slice"
+    aria-hidden="true"
+    focusable="false"
+  >
+    {edges.map(({ a, b }) => (
+      <line
+        x1={nodes[a].x}
+        y1={nodes[a].y}
+        x2={nodes[b].x}
+        y2={nodes[b].y}
+      />
+    ))}
+    {nodes.map(({ x, y }) => (
+      <circle cx={x} cy={y} r="3" />
+    ))}
+  </svg>
+  <div class="hero-scrim" aria-hidden="true"></div>
   <div class="container">
     <span class="hero-label">{t('hero.label')}</span>
     <h1 class="hero-name">{t('hero.name')}</h1>
@@ -24,13 +87,62 @@ const t = useTranslations(locale);
 
 <style>
   .hero {
+    position: relative;
+    overflow: hidden;
     min-height: calc(100svh - var(--nav-height));
     display: flex;
     align-items: center;
     padding-block: var(--space-2xl);
   }
 
+  /* SVG fills the hero behind everything */
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .hero-bg line {
+    stroke: var(--color-accent-dim);
+    stroke-width: 1;
+    fill: none;
+    opacity: 0.4;
+  }
+
+  .hero-bg circle {
+    fill: var(--color-accent);
+    opacity: 0.5;
+  }
+
+  /* Entry animation — opacity only (compositor, no layout) */
+  .hero-bg {
+    animation: hero-bg-in 1.2s ease-out 0.1s both;
+  }
+
+  @keyframes hero-bg-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-bg { animation: none; }
+  }
+
+  /* Scrim: solid bg on text side, fades toward node side */
+  .hero-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, var(--color-bg) 0%, transparent 55%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Text floats above SVG and scrim */
   .hero .container {
+    position: relative;
+    z-index: 2;
     display: flex;
     flex-direction: column;
   }
