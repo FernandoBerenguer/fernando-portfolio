@@ -1,12 +1,16 @@
 ---
 import IconLinkedIn from './icons/IconLinkedIn.astro';
+import LogoMark from './icons/LogoMark.astro';
 
 const year = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
   <div class="footer-inner">
-    <p class="footer-copy">&copy; {year} Fernando Berenguer</p>
+    <div class="footer-brand">
+      <LogoMark height={20} />
+      <p class="footer-copy">&copy; {year} Fernando Berenguer</p>
+    </div>
     <div class="footer-links">
       <a
         href="https://www.linkedin.com/in/fernando-berenguer-269b7696/"
@@ -36,6 +40,13 @@ const year = new Date().getFullYear();
     justify-content: space-between;
     gap: var(--space-md);
     flex-wrap: wrap;
+  }
+
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: var(--color-accent);
   }
 
   .footer-copy {

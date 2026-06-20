@@ -2,6 +2,7 @@
 import Nav from './Nav.astro';
 import LanguageSelector from './LanguageSelector.astro';
 import ThemeToggle from './islands/ThemeToggle';
+import LogoMark from './icons/LogoMark.astro';
 import type { Locale } from '../i18n/ui';
 import { useTranslations } from '../i18n/utils';
 
@@ -16,7 +17,9 @@ const t = useTranslations(locale);
 
 <header class="site-header">
   <div class="header-inner">
-    <a href={`/${locale}/`} class="site-logo">Fernando Berenguer</a>
+    <a href={`/${locale}/`} class="site-logo" aria-label="Fernando Berenguer">
+      <LogoMark height={28} />
+    </a>
     <Nav locale={locale} />
     <div class="header-controls">
       <LanguageSelector locale={locale} alternateUrl={alternateUrl} />
@@ -59,16 +62,16 @@ const t = useTranslations(locale);
   }
 
   .site-logo {
-    font-size: var(--text-base);
-    font-weight: var(--font-weight-bold);
-    color: var(--color-text);
+    display: inline-flex;
+    align-items: center;
+    color: var(--color-accent);
     text-decoration: none;
     flex-shrink: 0;
-    transition: color 150ms ease;
+    transition: opacity 150ms ease;
   }
 
   .site-logo:hover {
-    color: var(--color-accent);
+    opacity: 0.75;
     text-decoration: none;
   }
 
