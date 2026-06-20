@@ -93,6 +93,7 @@ for (let i = 0; i < N; i++) {
     display: flex;
     align-items: center;
     padding-block: var(--space-2xl);
+    --hero-net-color: var(--color-accent);
   }
 
   /* SVG fills the hero behind everything */
@@ -105,14 +106,14 @@ for (let i = 0; i < N; i++) {
   }
 
   .hero-bg line {
-    stroke: var(--color-accent-dim);
+    stroke: var(--hero-net-color);
     stroke-width: 1;
     fill: none;
     opacity: 0.4;
   }
 
   .hero-bg circle {
-    fill: var(--color-accent);
+    fill: var(--hero-net-color);
     opacity: 0.5;
   }
 
@@ -213,5 +214,12 @@ for (let i = 0; i < N; i++) {
   .hero-cta:hover {
     opacity: 0.88;
     text-decoration: none;
+  }
+</style>
+
+<style is:global>
+  [data-theme="light"] .hero-bg line {
+    stroke: #2d6a54;
+    opacity: 0.65;
   }
 </style>
